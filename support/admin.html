@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="admin.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+    <nav class="navbar" >
+        <div class="navbar-container container">
+            <input type="checkbox" name="" id="">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#">Result</a></li>
+                <li><a href="#">Download</a></li>
+                
+            </ul>
+            <h1 class="logo">ADMIN</h1>
+        </div>
+    </nav>
+    </div>
+    <aside>
+    <div class="wrapper">
+        <!--Top menu -->
+        <div class="sidebar" >
+           <!--profile image & text-->
+            <!--menu item-->
+            <ul>
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="item">Home</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="item">Voters Turnout</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                        <span class="item">Controls</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-desktop"></i></span>
+                        <span class="item">Fraud Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-login.html">
+                        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                        <span class="item">Log Out</span>
+                    </a>
+                </li>
+                <li style="color: beige; padding: 10px; padding-top: 50px; text-align: center;">
+                    
+                        <span>Start Date</span>
+                        <br>
+                        <span>03/01/2023</span>
+                        
+                    
+                </li>
+                <li style="color: beige;padding: 10px; padding-top: 20px; text-align: center;">
+                    
+                        <span>End Date</span>
+                        <br>
+                        <span>03/04/2023</span>
+                        
+                    
+                </li>
+            </ul>
+        </div>
+        <!---<div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        </div>--->
+        
+
+    </div>
+</aside>
+<div style="padding: 25px;text-align: left; padding-top: 100px; margin-left: 300px; font-weight:bold;">
+ ELECTION 2023
+</div>
+<section style="float: left;width: 50%;"><table id="customers">
+    <tr>
+      <th style="width: 35px;"></th>
+      <th>Candidate</th>
+      <th>Vote Percentage</th>
+      <th>Votes</th>
+
+    </tr>
+    <tr>
+      <td><img src="https://seeklogo.com/images/A/all-india-trinamool-congress-logo-081AC20A01-seeklogo.com.png" style="height: 30px;width: 30px;" alt="" srcset=""></td>
+      <td>Trinamool Congress</td>
+      <td>25%</td>
+      <td><span id="tmc_count"></span>&nbsp;</td>
+    </tr>
+    <tr>
+    <td><img src="https://seeklogo.com/images/B/BJP-logo-C3CCCD3D69-seeklogo.com.png" style="height: 30px;width: 30px;" alt="" srcset=""></td>
+      <td>Bharatiya Janta Party</td>
+      <td>15%</td>
+      <td><span id="bjp_count"></span>&nbsp;</td>
+    </tr>
+    <tr>
+    <td><img src="https://seeklogo.com/images/C/CONGRESS-logo-1731A8DA88-seeklogo.com.png" style="height: 30px;width: 30px;" alt="" srcset=""></td>
+      <td>Indian National Congress</td>
+      <td>5%</td>
+      <td><span id="inc_count"></span>&nbsp;</td>
+    </tr>
+    
+  </table>
+</section>
+<Section style="float: left;width: 50%;">
+    
+    <div class="container" style="float: right;  ">
+        <div class="donut-chart-block block"> 
+              <div class="donut-chart" >
+                  <div id="part1" class="portion-block"><div class="circle"></div></div>
+                  <div id="part2" class="portion-block"><div class="circle"></div></div>
+                  <div id="part3" class="portion-block"><div class="circle"></div></div>
+                  <p class="center"></p>        
+              </div>
+         </div>
+      </div>
+    </div>
+</Section>
+<section>
+    <div>
+        Total number of enrolled voters : <span id="enrolled-voters"></span><br>
+        Total number of votes polled : <span id="votes_polled"></span><br>
+        Voter Turn Out Percentage : <span id="percentage_turnout"></span>&nbsp;%<br>
+        INC: <span id="inc_count"></span>&nbsp;<br>
+        BJP: <span id="bjp_count"></span>&nbsp;<br>
+        TMC: <span id="tmc_count"></span>&nbsp;
+    </div>
+    <div>
+        <button class="stop-session" id='stop-session'>Stop Session</button>
+        <button class="reset" id='reset-btn'>Reset</button>
+    </div>
+    <canvas id="pieChart"></canvas>
+</section>
+</div>
+  <!-- <script>
+     var hamburger = document.querySelector(".hamburger");
+    hamburger.addEventListener("click", function(){
+        document.querySelector("body").classList.toggle("active");
+    })
+  </script> -->
+  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script type="module" src="sc3.js"></script>
+</body>
+</html>
