@@ -74,11 +74,11 @@ firebaseRef1.on("value", function(snapshot){
 let t,b,c;
 firebaseRef2.on("value",function(snapshot){
   t = snapshot.child('tmc').val();
-  console.log(t);
-  // tmc_count.textContent=t;
-  console.log(tmc_count);
+//   console.log(t);
+  tmc_count.textContent=t;
+//   console.log(tmc_count);
   b = snapshot.child('bjp').val();
-  // bjp_count.textContent=b;
+  bjp_count.textContent=b;
   c = snapshot.child('cong').val();
-  // inc_count.textContent=c;
+  inc_count.textContent=c;
 });
