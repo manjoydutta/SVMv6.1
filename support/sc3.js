@@ -72,12 +72,10 @@ firebaseRef1.on("value", function(snapshot){
 });
 
 firebaseRef2.on("value",function(snapshot){
-   var t = snapshot.child('tmc').val();
-//   console.log(t);
-  tmc_count.textContent=t;
-//   console.log(tmc_count);
-  var b = snapshot.child('bjp').val();
-  bjp_count.textContent=b;
-   var c = snapshot.child('cong').val();
-  inc_count.textContent=c;
+  var tmc = snapshot.child('tmc').val();  
+  tmc_count.textContent=tmc;  
+  var bjp = snapshot.child('bjp').val();  
+  bjp_count.textContent=bjp;  
+  var cong = snapshot.child('cong').val();
+  inc_count.textContent=cong;
 });
