@@ -2,8 +2,11 @@ const enrolled_voters = document.querySelector("#enrolled-voters");
 const votes_polled = document.querySelector("#votes_polled");
 const percentage_turnout = document.querySelector("#percentage_turnout");
 const tmc_count = document.querySelector("#tmc_count");
+const tmc_per = document.querySelector("#tmc_per");
 const bjp_count = document.querySelector("#bjp_count");
+const bjp_per = document.querySelector("#bjp_per");
 const inc_count = document.querySelector("#inc_count");
+const inc_per = document.querySelector("#inc_per");
 var ctx = document.getElementById("pieChart").getContext("2d");
 var resetButton = document.getElementById("reset-btn");
 var stopSession = document.getElementById("stop-session");
@@ -22,7 +25,7 @@ var app1 = firebase.initializeApp(firebaseConfig1,"app1");
 var app2 = firebase.initializeApp(firebaseConfig1,"app2");
 var firebaseRef1 = app1.database().ref('voter');
 var firebaseRef2 = app2.database().ref('vote_count');
-
+var votted;
 firebaseRef1.on("value", function(snapshot){
   var voter_arr = [];
   var flag = [];
@@ -35,7 +38,7 @@ firebaseRef1.on("value", function(snapshot){
     flag.push(snapshot.child(''+voter_arr[i]).child('flag').val());i++;
   })
   enrolled_voters.textContent=c;
-  var votted=flag.filter(element => element === "T").length;
+  votted = flag.filter(element => element === "T").length;
   votes_polled.textContent=votted;
   percentage_turnout.textContent=(votted/c).toFixed(4)*100;
   var pieChart = new Chart(ctx, {
@@ -62,8 +65,8 @@ firebaseRef1.on("value", function(snapshot){
           var data={
             voter:voter_arr[i],flag:"F"
           }
-        firebase.database().ref('voter').child(""+voter_arr[i]).update(data);
-        i++;
+          firebaseRef1.child(""+voter_arr[i]).update(data);
+          i++;
       })}
   })
   stopSession.addEventListener("click", function() {
@@ -73,9 +76,12 @@ firebaseRef1.on("value", function(snapshot){
 
 firebaseRef2.on("value",function(snapshot){
   var tmc = snapshot.child('tmc').val();  
-  tmc_count.textContent=tmc;  
+  tmc_count.textContent=tmc;
+  tmc_per.textContent=(tmc/votted)*100;
   var bjp = snapshot.child('bjp').val();  
   bjp_count.textContent=bjp;  
+  bjp_per.textContent=(bjp/votted)*100; 
   var cong = snapshot.child('cong').val();
   inc_count.textContent=cong;
+  inc_per.textContent=(cong/votted)*100;
 });
