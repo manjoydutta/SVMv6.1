@@ -78,10 +78,14 @@ firebaseRef.ref('user').on("value", function(snapshot){
       const aadhaar = document.getElementById('aadhaar-id').value;
       const email = document.getElementById('email-id').value;
       const password = document.getElementById('register-password').value;
+      const phone = document.getElementById('mobile-number').value;
+      
       const voterIdError = document.querySelector("#voter-id-error");
       const aadhaarNumberError = document.querySelector("#aadhaar-number-error");
       const emailError = document.querySelector("#email-error");
       const passwordError = document.querySelector("#password-error");
+      const phoneError = document.querySelector("#mobile-number-error");
+      
       var valid = true;
       if(voter_arr.indexOf(voter) != -1 ){
         valid=false;
@@ -110,13 +114,18 @@ firebaseRef.ref('user').on("value", function(snapshot){
           passwordError.textContent = " Must be of min 8 characters long";
           valid = false;
         }
+        if (phone.length < 10) {
+          phoneError.textContent = " Mobile must be 10 digits long";
+          valid = false;
+        }
       }
       if (valid){
       var data = {
             voter: voter,
             aadhaar: aadhaar,
             email: email,
-            password : password
+            password: password,
+            phone: phone
       }
       var data1 = {
         voter: voter,
